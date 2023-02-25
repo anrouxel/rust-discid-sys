@@ -1,0 +1,24 @@
+image: archlinux
+packages:
+  - rust
+  - clang
+  - libdiscid
+environment:
+  CARGO_TERM_COLOR: always
+secrets:
+  - a998984c-b296-4b57-916d-bc190986cf38
+tasks:
+  - test: |
+      cd rust-discid-sys
+      cargo build --verbose
+      cargo test --verbose
+      cargo fmt --verbose --all -- --check
+      cargo clippy -- -D warnings
+  # Skip publishing if this is not a tagged release
+  - only-tags: |
+      cd rust-discid-sys
+      GIT_REF=$(git describe --always)
+      [[ "$GIT_REF" =~ ^[0-9]+\.[0-9]+(\.[0-9]+)?$ ]] || complete-build
+  - publish: |
+      cd rust-discid-sys
+      cargo publish --verbose
