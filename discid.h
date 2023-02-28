@@ -52,8 +52,8 @@
 
 #define DISCID_VERSION_MAJOR 0
 #define DISCID_VERSION_MINOR 6
-#define DISCID_VERSION_PATCH 2
-#define DISCID_VERSION_NUM 602
+#define DISCID_VERSION_PATCH 3
+#define DISCID_VERSION_NUM 603
 
 #ifdef __cplusplus
   extern "C" {
@@ -64,11 +64,11 @@
  * \section intro Introduction
  *
  * Libdiscid is a C library for calculating DiscIDs
- * (<a href="http://musicbrainz.org/doc/Disc ID">MusicBrainz</a>
+ * (<a href="https://musicbrainz.org/doc/Disc ID">MusicBrainz</a>
  * and <a href="http://freedb.org">freedb</a>)
  * for Audio CDs.
  * Additionally the library can extract the MCN/UPC/EAN and the
- * <a href="http://musicbrainz.org/doc/ISRC">ISRCs</a> from disc.
+ * <a href="https://musicbrainz.org/doc/ISRC">ISRCs</a> from disc.
  *
  * The idea is to have an easy to use library without any dependencies
  * that can be used from scripting languages.
@@ -101,14 +101,14 @@
  * version number.  To build a small sample program one would use:
  *
  * @par
- * <tt>gcc libdiscid-test.c \`pkg-config libdiscid --cflags --libs\` -o libdiscid-test</tt>
+ * <tt>gcc libdiscid-test.c \`pkg-config libdiscid -\-cflags -\-libs\` -o libdiscid-test</tt>
  *
  * \section Contact
  *
- *  - <a href="http://lists.musicbrainz.org/mailman/listinfo/musicbrainz-devel">MusicBrainz Development Mailing List</a>
- *  - <a href="http://tickets.musicbrainz.org/browse/LIB">MusicBrainz Bug Tracker</a>
- *  - <a href="http://musicbrainz.org/doc/libdiscid">MusicBrainz Documentation</a>
+ *  - <a href="https://tickets.musicbrainz.org/browse/LIB">MusicBrainz Bug Tracker</a>
+ *  - <a href="https://musicbrainz.org/doc/libdiscid">libdiscid Documentation</a>
  *  - <a href="https://github.com/metabrainz/libdiscid">Github Repository</a>
+ *  - IRC: <a href="https://musicbrainz.org/doc/Communication/IRC">\#metabrainz on Libera.Chat</a>
  *
  */
 
@@ -130,7 +130,7 @@ typedef void *DiscId;
  *   - "isrc"	read ISRC from disc
  *
  * A table in the
- * <a href="http://musicbrainz.org/doc/libdiscid">MusicBrainz Documentation</a>
+ * <a href="https://musicbrainz.org/doc/libdiscid">MusicBrainz Documentation</a>
  * specifies which features are available on which platform in what version.
  *
  * In the code you can use discid_get_feature_list() or discid_has_feature()
@@ -247,7 +247,7 @@ LIBDISCID_API int discid_read_sparse(DiscId *d, const char *device,
  * after a put is the same as the length of your last audio track.
  * Depending on your tools you might need to substract 11400 (2:32 min.).
  * See also:
- * <a href="http://musicbrainz.org/doc/Disc_ID_Calculation">Disc ID Calculation</a>
+ * <a href="https://musicbrainz.org/doc/Disc_ID_Calculation">Disc ID Calculation</a>
  *
  *
  * @param d a DiscID object created by discid_new()
@@ -331,7 +331,7 @@ LIBDISCID_API char *discid_get_submission_url(DiscId *d);
  * Return an URL for retrieving CD information from MusicBrainz' web service
  *
  * The URL provides the CD information in XML.
- * See http://musicbrainz.org/development/mmd for details.
+ * See https://musicbrainz.org/development/mmd for details.
  *
  * The returned string is only valid as long as the DiscId object exists.
  *
@@ -482,3 +482,20 @@ LIBDISCID_API char *discid_get_version_string(void);
 #endif
 
 #endif /* MUSICBRAINZ_DISC_ID_H */
+
+/** \example discid.c
+ * This example code uses libdiscid to read the TOC only from a CD and output
+ * the disc IDs and TOC details.
+ *
+ * The CD device to use can be specified as the first command line parameter.
+ * If none is given the platform's default device will be used.
+ */
+
+/** \example discisrc.c
+ * This example code uses libdiscid to read the TOC, MCN and ISRCs from a CD.
+ * If supported by the platform and provided by the CD the MCN for the disc and
+ * ISRCs for each track will be printed.
+ *
+ * The CD device to use can be specified as the first command line parameter.
+ * If none is given the platform's default device will be used.
+ */
