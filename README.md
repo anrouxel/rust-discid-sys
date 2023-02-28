@@ -18,7 +18,7 @@ The source code for discid-sys is available on
 [SourceHut](https://git.sr.ht/~phw/rust-discid-sys).
 
 Please report any issues on the
-[issue tracker](https://todo.sr.ht/~phw/rust-discid).
+[issue tracker](https://todo.sr.ht/~phw/discid-bindings).
 
 Patches can be submitted to the [mailing list](https://lists.sr.ht/~phw/musicbrainz).
 You can clone the repository directly on SourceHut and submit your changes
