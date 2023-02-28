@@ -1,4 +1,9 @@
 # Changelog
+
+## 0.4.1 (2022-02-28)
+- Build with bindgen 0.64.0
+- Moved sources to https://git.sr.ht/~phw/rust-discid-sys
+
 ## 0.4.0 (2020-01-24)
 Use bitfield_enum for `discid_feature`
 
