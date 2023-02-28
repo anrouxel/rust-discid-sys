@@ -2,6 +2,7 @@
 [![crates.io](https://img.shields.io/crates/v/discid-sys.svg)](https://crates.io/crates/discid-sys)
 [![Documentation](https://docs.rs/discid-sys/badge.svg)](https://docs.rs/discid-sys)
 [![License](https://img.shields.io/crates/l/discid-sys.svg)](https://crates.io/crates/discid-sys)
+[![builds.sr.ht status](https://builds.sr.ht/~phw/rust-discid-sys/commits/main/.svg)](https://builds.sr.ht/~phw/rust-discid-sys/commits/main/?)
 
 ## About
 discid-sys provides automatically generated, unsafe Rust bindings for
