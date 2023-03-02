@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0 (2022-03-02)
+- Fix compilation with standard discid.h for libdiscid 0.6.4
+
+Features from the features enum now must be cast when passing to
+`discid_read_sparse` by calling `into()`.
+
 ## 0.4.1 (2022-02-28)
 - Build with bindgen 0.64.0
 - Moved sources to https://git.sr.ht/~phw/rust-discid-sys
