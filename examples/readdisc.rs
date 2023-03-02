@@ -6,7 +6,7 @@ fn main() {
         let handle = discid_new();
         let device = CString::new("/dev/cdrom").expect("CString::new failed");
         let features = discid_feature::DISCID_FEATURE_READ | discid_feature::DISCID_FEATURE_MCN;
-        let status = discid_read_sparse(handle, device.into_raw(), features);
+        let status = discid_read_sparse(handle, device.into_raw(), features.into());
 
         if status == 0 {
             let error_msg_ptr = discid_get_error_msg(handle);
