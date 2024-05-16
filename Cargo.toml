@@ -13,4 +13,4 @@ license = "LGPL-3.0-or-later"
 [dependencies]
 
 [build-dependencies]
-bindgen = "^0.64.0"
+bindgen = "^0.69.4"
