@@ -2,7 +2,7 @@
 name = "discid-sys"
 version = "0.5.0"
 authors = ["Philipp Wolfer <ph.wolfer@gmail.com>"]
-edition = "2021"
+edition = "2024"
 description = "Unsafe FFI bindings for MusicBrainz libdiscid"
 repository = "https://git.sr.ht/~phw/rust-discid-sys"
 readme = "README.md"
