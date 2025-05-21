@@ -52,8 +52,8 @@
 
 #define DISCID_VERSION_MAJOR 0
 #define DISCID_VERSION_MINOR 6
-#define DISCID_VERSION_PATCH 4
-#define DISCID_VERSION_NUM 604
+#define DISCID_VERSION_PATCH 5
+#define DISCID_VERSION_NUM 605
 
 #ifdef __cplusplus
   extern "C" {
