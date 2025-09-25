@@ -30,6 +30,8 @@ jobs:
           msystem: UCRT64
           update: true
           cache: true
+          install: >
+            mingw-w64-ucrt-x86_64-toolchain
 
       - name: Build (cargo)
         # use the msys2 shell (default from `defaults` above)
