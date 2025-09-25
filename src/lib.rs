@@ -8,7 +8,7 @@ include!(concat!(env!("OUT_DIR"), "/bindings.rs"));
 
 impl From<discid_feature> for c_uint {
     fn from(item: discid_feature) -> Self {
-        item.0 as c_uint
+        item.0.try_into().unwrap()
     }
 }
 
