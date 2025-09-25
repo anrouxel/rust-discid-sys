@@ -41,6 +41,7 @@ jobs:
           export CARGO_HOME="/c/Users/$(whoami)/.cargo"
           export PATH="$CARGO_HOME/bin:$PATH"
 
+          rustup target add x86_64-pc-windows-msvc
           # optional: ensure rustup toolchain visible inside MSYS2
           rustup default stable-x86_64-pc-windows-gnu || true
 
