@@ -23,8 +23,22 @@ jobs:
           toolchain: stable-x86_64-pc-windows-gnu
           profile: minimal
 
+      - name: Setup MSYS2 (UCRT64) and install GTK4 + libadwaita
+        uses: msys2/setup-msys2@v2
+        id: msys2
+        with:
+          msystem: UCRT64
+          update: true
+          cache: true
+
       - name: Build (cargo)
+        # use the msys2 shell (default from `defaults` above)
         run: |
+          # make rustup/cargo from the Windows install visible in MSYS2
+          # CARGO_HOME is usually %USERPROFILE%\.cargo -> /c/Users/$(whoami)/.cargo
+          export CARGO_HOME="/c/Users/$(whoami)/.cargo"
+          export PATH="$CARGO_HOME/bin:$PATH"
+
           # optional: ensure rustup toolchain visible inside MSYS2
           rustup default stable-x86_64-pc-windows-gnu || true
 
