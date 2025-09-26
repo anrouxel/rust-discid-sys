@@ -10,7 +10,6 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        # use the msys2 shell for subsequent run steps by default
         shell: msys2 {0}
 
     steps:
@@ -33,22 +32,43 @@ jobs:
           install: >
             mingw-w64-ucrt-x86_64-toolchain
 
-      - name: Build (cargo)
-        # use the msys2 shell (default from `defaults` above)
+      # ---------- GNU ----------
+      - name: Build with GNU toolchain
         run: |
-          # make rustup/cargo from the Windows install visible in MSYS2
-          # CARGO_HOME is usually %USERPROFILE%\.cargo -> /c/Users/$(whoami)/.cargo
           export CARGO_HOME="/c/Users/$(whoami)/.cargo"
           export PATH="$CARGO_HOME/bin:$PATH"
 
-          rustup target add x86_64-pc-windows-msvc
-          # optional: ensure rustup toolchain visible inside MSYS2
           rustup default stable-x86_64-pc-windows-gnu || true
-
-          # build release
+          rustup target add x86_64-pc-windows-gnu
           cargo build --release --target x86_64-pc-windows-gnu
+
+      - name: Show bindings.rs (GNU)
+        run: |
+          echo "=== GNU bindings.rs ==="
+          find target -type f -name 'bindings.rs' -print
+          for f in $(find target -type f -name 'bindings.rs'); do
+            echo ">>> $f"
+            cat "$f"
+          done
+
+      # ---------- MSVC ----------
+      - name: Build with MSVC toolchain
+        shell: pwsh
+        run: |
+          rustup default stable-x86_64-pc-windows-msvc
+          rustup target add x86_64-pc-windows-msvc
           cargo build --release --target x86_64-pc-windows-msvc
 
+      - name: Show bindings.rs (MSVC)
+        shell: pwsh
+        run: |
+          Write-Output "=== MSVC bindings.rs ==="
+          Get-ChildItem -Recurse -Filter bindings.rs target | ForEach-Object {
+            Write-Output ">>> $($_.FullName)"
+            Get-Content $_.FullName
+          }
+
+      # ---------- Upload binaries (ton original) ----------
       - name: Collect artifact
         uses: actions/upload-artifact@v4
         with:
